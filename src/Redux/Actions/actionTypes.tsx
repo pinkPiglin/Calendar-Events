@@ -1,0 +1,4 @@
+export const NEXT_MONTH = 'NEXT_MONTH';
+export const PREV_MONTH = 'PREV_MONTH';
+export const ASSIGN_ACTIVE_DAY = 'ASSIGN_ACTIVE_DAY';
+export const UPDATE_DAYS_IN_MONTH = 'UPDATE_DAYS_IN_MONTH';
