@@ -10,6 +10,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 const store = createStore(rootReduser, composeWithDevTools())
+export type RootState = ReturnType<typeof rootReduser>;
+export type AppDispatch = typeof store.dispatch;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

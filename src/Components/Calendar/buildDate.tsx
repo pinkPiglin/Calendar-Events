@@ -11,17 +11,18 @@ export interface IDay {
     isNextMonthDay?:boolean
 }
 
-interface Y{
-    year:number
+export interface Y{
+    Y:number
 }
-interface Y_M extends Y{
-    month:number
+export interface Y_M extends Y{
+    M:number
 }
-interface Y_M_D extends Y_M{
-    day:number
+export interface Y_M_D extends Y_M{
+    D:number
 }
-interface Calendar{
+export interface IGlobalState{
     calendar:IDefaultState
+    [key:string]:unknown
 }
 
 export const nextMonthOfThisYear =(month:number)=> month+1 !== 12? true : false 
@@ -66,7 +67,7 @@ function getStartDaysOfNextMonth(year:number,month:number,dateofWeek:number):IDa
 function getArrayOfDays(state:IDefaultState):IDay[] {
     const {year,month,daysInMonth} = state;
     const result:IDay[] =[];
-    const dateofWeek =(day:number)=> getDateOfWeek({year,month,day:day});
+    const dateofWeek =(day:number)=> getDateOfWeek({Y:year,M:month,D:day});
     
     if(dateofWeek(1)!==1){ //Первое число месяца != Понедельник?
         const lastDaysOfPrevMonth:IDay[] = getLostDaysOfPrevMonth(year, month, dateofWeek(1));
@@ -91,26 +92,27 @@ function getArrayOfDays(state:IDefaultState):IDay[] {
     return result
 }
 
-function getDateOfWeek({year,month,day}:Y_M_D):number{
-    return new Date(year, month, day).getDay()
+function getDateOfWeek({Y,M,D}:Y_M_D):number{
+    return new Date(Y, M, D).getDay()
 }
+type arg= 'big' | 'small';
 
-export  function getNameMonth(month:number):string{
+export  function getNameMonth(month:number,type:arg):string{
     const nameMonth = [
-        'Январь',
-        'Февраль',
-        'Март',
-        'Апрель',
-        'Май',
-        'Июнь',
-        'Июль',
-        'Август',
-        'Сентябрь',
-        'Октябрь',
-        'Ноябрь',
-        'Декабрь',
+        {big:'Январь',small:'января'},
+        {big:'Февраль',small:'февраля'},
+        {big:'Март',small:'марта'},
+        {big:'Апрель',small:'апреля'},
+        {big: 'Май',small:'мая'},
+        {big:'Июнь' ,small:'июня'},
+        {big:'Июль' ,small:'июля'},
+        {big:'Август' ,small:'августа'},
+        {big:'Сентябрь' ,small:'сентября'},
+        {big:'Октябрь' ,small:'октября'},
+        {big:'Ноябрь' ,small:'ноября'},
+        {big:'Декабрь' ,small:'декабря'},
     ]
-    return nameMonth[month]
+    return nameMonth[month][type]
 }
 
 export  const getdaysInMonth=(year:number, month:number): number=>
@@ -124,7 +126,7 @@ export function dayIsSelected(state:IDefaultState, objOfDay:IDay):boolean{
     return state.selectedDay.Y===objOfDay.year && state.selectedDay.M === objOfDay.month && state.selectedDay.D===objOfDay.day
 }
 export const BuildDays =()=>{
-    const state:IDefaultState =  useSelector((state:Calendar)=> state.calendar)
+    const state:IDefaultState =  useSelector((state:IGlobalState)=> state.calendar)
     const days: IDay[] = getArrayOfDays(state);
 
     console.log(days)
