@@ -1,0 +1,116 @@
+$widthEvents:300;
+$heightEvents: 289;
+.Events{
+    width: $widthEvents+px;
+    height: $heightEvents+px;
+    margin: 0 auto;
+    box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
+    border-radius: 16px;
+    outline: 1px solid black;
+    overflow: hidden;
+}
+.ShowEvents{
+  
+ 
+}
+.headerEvents{
+    background-color:rgba(0, 0, 255, 0.711);
+    display: grid;
+    align-content: center;
+    height: 30px;
+    >h4{
+        color: white;
+        font-weight: 500;
+        font-size: 16px;
+    }
+  
+}
+.listEvents{
+    height: 300px; 
+}
+.event{
+    min-height: 25px;
+    outline:1px solid rgba(0, 0, 0, 0.304);
+    border-radius: 8px;
+    width:97%;
+    margin: 5px auto 0px;
+    display: grid;
+    grid-template-columns: 15% 65% 20%;
+    align-content: center;
+    grid-auto-rows: auto;
+    padding: 0px;
+    overflow: hidden;
+    transition: all 0.1s;
+    &:hover{
+        outline: 1px solid blue;
+    }
+}
+.uiEvent{
+    min-height: 25px;
+    background-color: rgba(166, 167, 169, 0.57);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.editEvent, .deleteEvent{
+    width: 15px;
+    height: 15px;
+    border: none;
+    background-repeat: no-repeat;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.editEvent{
+    background:url('../../icons/fi-rr-pencil.png');
+    background-size: 15px 15px;
+    &:hover{
+        background:url('../../icons/fi-ss-pencil.png');
+        background-size: 15px 15px;
+    }
+}
+.deleteEvent{
+    background: url('../../icons/fi-rr-trash.png');
+    background-size: 15px 15px;
+    &:hover{
+        background: url('../../icons/fi-ss-trash.png');
+        background-size: 15px 15px;
+    }
+}
+.text{
+    margin: 0;
+    word-wrap: break-word;
+    display: grid;
+    align-content: center;
+}
+.time{
+    display: grid;
+    align-content: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.304);
+}
+.addEvent{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: -82px;
+    left: 130px;
+    border: none;
+    cursor: pointer;
+
+    background: url('../../icons/plus.png');
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: center;
+
+    transition: all 0.2s;
+   
+    &:hover{
+        background: url('../../icons/add.png');
+        background-repeat: no-repeat;
+        background-size: 25px 25px;
+        background-position: center;
+    }
+}
+// *{
+//     border: 1px solid red;
+//     box-sizing: border-box;
+// }

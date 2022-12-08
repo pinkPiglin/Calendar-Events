@@ -3,7 +3,7 @@ import { handlerDisplayDays, handlerNextYear, handlerPrevYear, handlerDisplayYea
 import { IDefaultState } from "../../../Redux/redusers/calendarResucer";
 import { getNameMonth, IGlobalState } from "../buildDate";
 import '.././calendar.scss'
-import { Today } from "../../Today";
+import { Today } from "../Today";
 
 interface IMonth{
     name:string

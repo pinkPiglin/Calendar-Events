@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { handlerGoToMonth, handlerChangeYear } from "../../../Redux/Actions/actionCreater";
-import { Today } from "../../Today";
+import { Today } from "../Today";
 import { IGlobalState } from "../buildDate";
 
 

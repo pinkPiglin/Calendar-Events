@@ -1,4 +1,4 @@
-import {getNameMonth} from './buildDate';
+import {getNameMonth, Y_M_D} from './buildDate';
 import { useSelector } from 'react-redux';
 import './calendar.scss'
 import { IDefaultState } from '../../Redux/redusers/calendarResucer';
@@ -19,8 +19,8 @@ export const weekDays:IWeekdays[]=[
     {big:'ПТ', small:'пятница'},
     {big:'СБ', small:'суббота'}
 ]
-export function getDateFormat_W_D_M(state:IDefaultState):string{
-    const {Y, M, D} = state.today;
+export function getDateFormat_W_D_M(date:Y_M_D):string{
+    const {Y, M, D} = date;
     const nameWeek= weekDays[new Date(Y,M,D).getDay()].small;
     return `${nameWeek}, ${D} ${getNameMonth(M, 'small')}`
 }
@@ -35,4 +35,3 @@ export default function Calendar(){
         </>
     )
 }
-git commit -m 'Calendar is done'

@@ -61,20 +61,20 @@ export const calendarReducer=(state=initialState, actions:any)=>{
                 daysInMonth:getdaysInMonth(state.today.Y, state.today.M),
                 display:{days:true, months:false,years:false}
             }
-            case GO_TO_MONTHS:
-                return {...state, year:actions.year, display:{days:false, months:true,years:false}}
-            case NEXT_YEAR:
-                return{...state, year:state.year+1}
-            case PREV_YEAR:
-                return{...state, year:state.year-1}
-            case DISPLAY_MONTH:
-                return{...state, display:{days:false, months:true,years:false}}
-            case DISPLAY_DAYS:
-                return{...state, year:actions.date.Y, month: actions.date.M, display:{days:true, months:false,years:false}}
-            case DISPLAY_YEARS:
-                return{...state, display:{days:false, months:false,years:true}}
-            case CHANGE_YEAR:
-                return{...state, year:actions.year}
+        case GO_TO_MONTHS:
+            return {...state, year:actions.year, display:{days:false, months:true,years:false}}
+        case NEXT_YEAR:
+            return{...state, year:state.year+1}
+        case PREV_YEAR:
+            return{...state, year:state.year-1}
+        case DISPLAY_MONTH:
+            return{...state, display:{days:false, months:true,years:false}}
+        case DISPLAY_DAYS:
+            return{...state, year:actions.date.Y, month: actions.date.M, display:{days:true, months:false,years:false}}
+        case DISPLAY_YEARS:
+            return{...state, display:{days:false, months:false,years:true}}
+        case CHANGE_YEAR:
+            return{...state, year:actions.year}
         default:
             return state
     }

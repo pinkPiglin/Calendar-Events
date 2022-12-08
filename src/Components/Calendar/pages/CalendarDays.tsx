@@ -3,7 +3,7 @@ import { handlerAssignActiveDate, handlerNextMonth, handlerPrevMonth, handlerTod
 import {BuildDays, dayIsSelected, getNameMonth, IDay} from '.././buildDate'
 import { IDefaultState } from '../../../Redux/redusers/calendarResucer';
 import { weekDays, getDateFormat_W_D_M } from '../calendar';
-import { Today } from '../../Today';
+import { Today } from '../Today';
 
 
 export const CalendarDays=()=>{
