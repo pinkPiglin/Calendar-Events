@@ -1,5 +1,5 @@
 import { getdaysInMonth, nextMonthOfThisYear, prevMonthOfThisYear, Y_M_D } from "../../Components/Calendar/buildDate"
-import {  ASSIGN_ACTIVE_DAY, DISPLAY_DAYS, DISPLAY_MONTH, GO_TODAY, GO_TO_MONTH, NEXT_MONTH, NEXT_YEAR, PREV_MONTH, PREV_YEAR, UPDATE_DAYS_IN_MONTH } from "../Actions/actionTypes"
+import {  ASSIGN_ACTIVE_DAY, CHANGE_YEAR, DISPLAY_DAYS, DISPLAY_MONTH, DISPLAY_YEARS, GO_TODAY, GO_TO_MONTHS, NEXT_MONTH, NEXT_YEAR, PREV_MONTH, PREV_YEAR, UPDATE_DAYS_IN_MONTH } from "../Actions/actionTypes"
 
 export interface IDefaultState {
     year:number
@@ -9,8 +9,8 @@ export interface IDefaultState {
     selectedDay:Y_M_D
     display:{
         days:boolean
-        month:boolean
-        year:boolean
+        months:boolean
+        years:boolean
     }
 }
 
@@ -30,8 +30,8 @@ const initialState:IDefaultState = {
     },
     display:{
         days:true,
-        month:false,
-        year:false
+        months:false,
+        years:false
     }
 
 }
@@ -58,18 +58,23 @@ export const calendarReducer=(state=initialState, actions:any)=>{
             return {...state, 
                 year:state.today.Y,
                 month:state.today.M,
-                daysInMonth:getdaysInMonth(state.today.Y, state.today.M)
+                daysInMonth:getdaysInMonth(state.today.Y, state.today.M),
+                display:{days:true, months:false,years:false}
             }
-            case GO_TO_MONTH:
-                return {...state, year:actions.date.Y, month: actions.date.M}
+            case GO_TO_MONTHS:
+                return {...state, year:actions.year, display:{days:false, months:true,years:false}}
             case NEXT_YEAR:
                 return{...state, year:state.year+1}
             case PREV_YEAR:
                 return{...state, year:state.year-1}
             case DISPLAY_MONTH:
-                return{...state, display:{days:false, month:true,year:false}}
+                return{...state, display:{days:false, months:true,years:false}}
             case DISPLAY_DAYS:
-                return{...state, year:actions.date.Y, month: actions.date.M, display:{days:true, month:false,year:false}}
+                return{...state, year:actions.date.Y, month: actions.date.M, display:{days:true, months:false,years:false}}
+            case DISPLAY_YEARS:
+                return{...state, display:{days:false, months:false,years:true}}
+            case CHANGE_YEAR:
+                return{...state, year:actions.year}
         default:
             return state
     }

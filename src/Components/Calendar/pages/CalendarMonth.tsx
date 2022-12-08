@@ -1,10 +1,9 @@
-
 import { useDispatch, useSelector } from "react-redux";
-import { handlerDisplayDays, handlerGoToMonth, handlerNextYear, handlerPrevYear} from "../../../Redux/Actions/actionCreater";
+import { handlerDisplayDays, handlerNextYear, handlerPrevYear, handlerDisplayYears} from "../../../Redux/Actions/actionCreater";
 import { IDefaultState } from "../../../Redux/redusers/calendarResucer";
 import { getNameMonth, IGlobalState } from "../buildDate";
-import { getDateFormat_W_D_M } from "../calendar";
 import '.././calendar.scss'
+import { Today } from "../../Today";
 
 interface IMonth{
     name:string
@@ -49,11 +48,10 @@ export const ChooseMonth=()=>{
     }
     
     return(
-        <>
         <div className="choosMonth">
-            <div className="today">{getDateFormat_W_D_M(state)}</div>
+            <Today/>
             <div className="calendarHeader">
-                <div className="year-month">{state.year}</div>
+                <div className="year-month" onClick={()=>dispatch(handlerDisplayYears())}>{state.year}</div>
                 <div>
                     <button className="btn-leafCalendar" onClick={()=>dispatch(handlerPrevYear())}>{'<'}</button>
                     <button className="btn-leafCalendar" onClick={()=> dispatch(handlerNextYear())}>{'>'}</button>
@@ -68,7 +66,5 @@ export const ChooseMonth=()=>{
                 ))}
             </div>
         </div>
-        
-        </>
     )
 }

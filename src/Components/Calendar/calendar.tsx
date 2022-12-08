@@ -4,6 +4,7 @@ import './calendar.scss'
 import { IDefaultState } from '../../Redux/redusers/calendarResucer';
 import { ChooseMonth } from './pages/CalendarMonth';
 import { CalendarDays } from './pages/CalendarDays';
+import { CalendarYears } from './pages/CalendarYears';
 
 export interface IWeekdays{
     big:string
@@ -29,7 +30,9 @@ export default function Calendar(){
     return(
         <>
         {state.display.days? <CalendarDays/>:null}
-        {state.display.month? <ChooseMonth/> : null}
+        {state.display.months? <ChooseMonth/> : null}
+        {state.display.years? <CalendarYears/> : null}
         </>
     )
 }
+git commit -m 'Calendar is done'

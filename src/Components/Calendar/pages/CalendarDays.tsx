@@ -3,6 +3,7 @@ import { handlerAssignActiveDate, handlerNextMonth, handlerPrevMonth, handlerTod
 import {BuildDays, dayIsSelected, getNameMonth, IDay} from '.././buildDate'
 import { IDefaultState } from '../../../Redux/redusers/calendarResucer';
 import { weekDays, getDateFormat_W_D_M } from '../calendar';
+import { Today } from '../../Today';
 
 
 export const CalendarDays=()=>{
@@ -33,9 +34,10 @@ export const CalendarDays=()=>{
             
         </div>))
     }
+   
     return(
         <div className="calendarDays">
-            <div className='today' onClick={()=>{dispatch(handlerToday())}}>{getDateFormat_W_D_M(state)}</div>
+            <Today/>
             <div className='calendarHeader'>
                 <div className='year-month' onClick={()=>dispatch(handlerDisplayMonth())}> {getNameMonth(state.month, 'big')} {state.year}</div>
                 <div>
