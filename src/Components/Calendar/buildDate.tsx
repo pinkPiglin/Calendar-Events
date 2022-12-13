@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { IDefaultState } from "../../Redux/redusers/calendarResucer";
+import { IEventState } from "../../Redux/redusers/eventReducer";
 
 export interface IDay {
     day: number
@@ -22,7 +23,7 @@ export interface Y_M_D extends Y_M{
 }
 export interface IGlobalState{
     calendar:IDefaultState
-    [key:string]:unknown
+    events:IEventState
 }
 
 export const nextMonthOfThisYear =(month:number)=> month+1 !== 12? true : false 

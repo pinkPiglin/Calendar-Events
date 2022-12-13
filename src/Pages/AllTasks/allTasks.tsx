@@ -1,8 +1,9 @@
+import Calendar from "../../Components/Calendar/calendar";
 
 export default function AllTasks(){
     return(
         <div>
-            <h1>All Tasks</h1>
+            <Calendar/>
         </div>
     )
 }

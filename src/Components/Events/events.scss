@@ -3,16 +3,13 @@ $heightEvents: 289;
 .Events{
     width: $widthEvents+px;
     height: $heightEvents+px;
-    margin: 0 auto;
+    margin: 50px auto;
     box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
     border-radius: 16px;
     outline: 1px solid black;
     overflow: hidden;
 }
-.ShowEvents{
-  
- 
-}
+
 .headerEvents{
     background-color:rgba(0, 0, 255, 0.711);
     display: grid;
@@ -63,9 +60,11 @@ $heightEvents: 289;
 .editEvent{
     background:url('../../icons/fi-rr-pencil.png');
     background-size: 15px 15px;
+    background-repeat: no-repeat;
     &:hover{
         background:url('../../icons/fi-ss-pencil.png');
         background-size: 15px 15px;
+        background-repeat: no-repeat;
     }
 }
 .deleteEvent{
@@ -77,16 +76,27 @@ $heightEvents: 289;
     }
 }
 .text{
-    margin: 0;
-    word-wrap: break-word;
-    display: grid;
-    align-content: center;
+    >textarea{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        resize: none;
+        border: none;
+        box-sizing: border-box;
+        font-size: 16px;
+        &:focus{
+            outline: none;
+            background-color: lightgray;
+            
+        }
+    }
 }
 .time{
     display: grid;
     align-content: center;
     border-right: 1px solid rgba(0, 0, 0, 0.304);
 }
+
 .addEvent{
     width: 30px;
     height: 30px;
@@ -110,7 +120,172 @@ $heightEvents: 289;
         background-position: center;
     }
 }
-// *{
-//     border: 1px solid red;
-//     box-sizing: border-box;
-// }
+.CreateEvent{
+  .noEvents{
+    color: gray;
+    margin-top: 10px;
+  }
+}
+.writeEventName{
+    width: 90%;
+    height: 105px;
+    overflow: hidden;
+    margin: 0 auto ;
+    margin-top: 40px;
+    >textarea{
+        width: 100%;
+        height: 80%;
+        overflow: hidden;
+        resize: none;
+        border:1px solid  rgba(166, 167, 169, 0.57);
+        box-sizing: border-box;
+        border-radius: 5px;
+        font-size: 16px;
+        
+        &:focus{
+            border: none;
+            outline: none;
+            border: 2px solid rgb(35, 35, 242);
+            
+        }
+    }
+ 
+    // >input{
+    //     display: block;
+    //     box-sizing: border-box;
+    //     border: none;
+    //     outline: none;
+    //     border-bottom:1px solid  rgba(166, 167, 169, 0.57);
+    //     font-size: 18px;
+    //     width: 100%;
+    //     height: 100%;
+    //     text-align: center;
+
+    //     &:focus{
+    //         border: none;
+    //         outline: none;
+    //         border-bottom: 3px solid rgb(35, 35, 242);
+    //     }
+    // }
+}
+
+
+.wraperDateEvent{
+    margin: 20px auto 0 ;
+    height: 25px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    column-gap: 25px;
+   
+    // .dateEvent, .timeEvent{
+    //     display: flex;
+    //     column-gap: 8px;
+    // }
+    .dateEvent{
+        padding-left: 30px;
+        background: url('../../icons/icons8-calendar-64.png');
+        background-size: 20px 20px;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    
+        &:hover{
+            background: url('../../icons/icons8-calendar-64\ \(1\).png');
+            background-size: 20px 20px;
+            background-repeat: no-repeat;
+            outline: none;
+        }
+    }
+    .timeEvent{
+        >input{
+            padding: 2px 5px;
+            font-size: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(211, 211, 211, 0.692);
+            &:hover, &:focus{
+                background-repeat: no-repeat;
+                outline: none;
+            }
+        }
+    }
+}
+.saveEvent{
+    margin: 10px 10px 10px 190px;
+    height: 30px;
+    background-color: rgb(23, 105, 228);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 5px 10px;
+    cursor: pointer;
+    &:hover{
+        background-color: blue;
+    }
+}
+.confirmSave{
+    width: 20px;
+    height: 20px;
+    background: url('../../icons/icons8-галочка-48.png');
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    &:hover{
+        background: url('../../icons/icons8-ок-48.png');
+        background-size:contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+.cancel{
+    width: 20px;
+    height: 20px;
+    background: url('../../icons/icons8-удалить-48.png');
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    &:hover{
+        background: url('../../icons/icons8-отмена-48.png');
+        background-size:contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+.errorUserMessage{
+    height: 50px;
+    top:-5px;
+    border-radius: 10px;
+    margin: 0 auto;
+    max-width: 98%;
+    color:rgba(0, 0, 0, 0.799);
+    overflow: hidden;
+    position: sticky;
+    color:rgba(255, 0, 0, 0.836);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    >p{
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        font-size: 17px;
+        max-height: 48px;
+        border: 1px solid red;
+
+        height: fit-content;
+        width: fit-content;
+        padding: 5px 5px 5px 30px;
+
+        background-color: rgba(253, 29, 29, 0.13);
+        background-image: url('../../icons/icons8-отмена-48.png');
+        background-repeat: no-repeat;
+        background-position: 3px center;
+        background-size: 20px 20px;
+        
+    }
+}
