@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
-import {  OnchangeEventValue, OnChangeTimeEvent, deleteErrorMessage } from "../../Redux/Actions/actionCreater";
+import {  OnchangeEventValue, OnChangeTimeEvent, deleteErrorMessage, showСalendarЕemporarily, updateNextDisplayAndSelectedDate } from "../../Redux/Actions/actionCreater";
 import { getNameMonth, IGlobalState } from "../Calendar/buildDate";
 import { handlerSaveEvent } from "../../UI/UICreateEvents/UICreateEvent";
+import {useEffect} from 'react'
+
 function drowError(error:string):JSX.Element{
     return (<p>{error}</p>)
 }
@@ -9,7 +11,15 @@ export const CreateEvent =()=>{
     const gState = useSelector((state:IGlobalState)=>state);
     const dispatch = useDispatch();
     const events = gState.events.events
-    
+    useEffect(()=>{
+        if( // если сейчас отображается Не календарь &&  есть разница в выбранном дне между календарем и событиями
+            (gState.events.display.calendar === false) &&
+            ( JSON.stringify(gState.events.selectedDate)!== JSON.stringify(gState.calendar.selectedDay) )
+        )
+        {
+            dispatch(updateNextDisplayAndSelectedDate(gState.calendar.selectedDay)) 
+        }
+    })
 
     return (
         <div className="CreateEvent">
@@ -26,7 +36,9 @@ export const CreateEvent =()=>{
                 
             </div>
             <div className="wraperDateEvent">
-                <div className="dateEvent">
+                <div className="dateEvent"
+                onClick={()=>dispatch(showСalendarЕemporarily(gState.calendar.selectedDay, {calendar:false, showEvents:false, createEvent:true}))}
+                >
                     {
                     `${gState.calendar.selectedDay.D} 
                     ${getNameMonth(gState.calendar.selectedDay.M, 'small').slice(0, 3)} 

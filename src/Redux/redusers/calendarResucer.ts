@@ -1,5 +1,6 @@
+
 import { getdaysInMonth, nextMonthOfThisYear, prevMonthOfThisYear, Y_M_D } from "../../Components/Calendar/buildDate"
-import {  ASSIGN_ACTIVE_DAY, CHANGE_YEAR, DISPLAY_DAYS, DISPLAY_MONTH, DISPLAY_YEARS, GO_TODAY, GO_TO_MONTHS, NEXT_MONTH, NEXT_YEAR, PREV_MONTH, PREV_YEAR, UPDATE_DAYS_IN_MONTH } from "../Actions/actionTypes"
+import {  ASSIGN_ACTIVE_DAY, CHANGE_YEAR, DISPLAY_DAYS, DISPLAY_MONTH, DISPLAY_YEARS, GO_TODAY, GO_TO_MONTHS, GO_TO_NEXT_DAY, GO_TO_PREV_DAY, NEXT_MONTH, NEXT_YEAR, PREV_MONTH, PREV_YEAR, UPDATE_DAYS_IN_MONTH } from "../Actions/actionTypes"
 
 export interface IDefaultState {
     year:number
@@ -37,7 +38,7 @@ const initialState:IDefaultState = {
 }
 
 
-export const calendarReducer=(state=initialState, actions:any)=>{ 
+export const calendarReducer=(state=initialState, actions:any):IDefaultState=>{ 
     switch(actions.type){
         case NEXT_MONTH:
             return {...state, 
@@ -75,6 +76,10 @@ export const calendarReducer=(state=initialState, actions:any)=>{
             return{...state, display:{days:false, months:false,years:true}}
         case CHANGE_YEAR:
             return{...state, year:actions.year}
+        case GO_TO_NEXT_DAY:
+            return{...state, selectedDay:{...state.selectedDay, D: state.selectedDay.D+1}}
+        case GO_TO_PREV_DAY:
+            return{...state, selectedDay:{...state.selectedDay, D: state.selectedDay.D -1}}
         default:
             return state
     }

@@ -1,5 +1,6 @@
-import { IEvent } from "../redusers/eventReducer";
-import { ASSIGN_ACTIVE_DAY, GO_TODAY, GO_TO_MONTHS, NEXT_MONTH, NEXT_YEAR, PREV_MONTH, PREV_YEAR, UPDATE_DAYS_IN_MONTH, DISPLAY_MONTH, DISPLAY_DAYS, DISPLAY_YEARS, CHANGE_YEAR, SAVE_VALUE_EVENT, SAVE_TIME_EVENT, PUSH_NEW_EVENT, DISPLAY_CREATE_EVENT, DELETE_EVENT, DEFINE_EDITABLE_EVENT, RESET_SELECTED_EVENT, REMEMBER_PRIMARY_TEXT, CACHE_EDITABLE_EVENT_TEXT, SAVE_CHANGED_EVENT, RECORD_ERROR, DELETE_ERROR_MESSAGE} from "./actionTypes";
+import { Y_M_D } from "../../Components/Calendar/buildDate";
+import { IDisplay, IEvent } from "../redusers/eventReducer";
+import { ASSIGN_ACTIVE_DAY, GO_TODAY, GO_TO_MONTHS, NEXT_MONTH, NEXT_YEAR, PREV_MONTH, PREV_YEAR, UPDATE_DAYS_IN_MONTH, DISPLAY_MONTH, DISPLAY_DAYS, DISPLAY_YEARS, CHANGE_YEAR, SAVE_VALUE_EVENT, SAVE_TIME_EVENT, PUSH_NEW_EVENT, DISPLAY_CREATE_EVENT, DELETE_EVENT, DEFINE_EDITABLE_EVENT, RESET_SELECTED_EVENT, REMEMBER_PRIMARY_TEXT, CACHE_EDITABLE_EVENT_TEXT, SAVE_CHANGED_EVENT, RECORD_ERROR, DELETE_ERROR_MESSAGE, GO_TO_NEXT_DAY, GO_TO_PREV_DAY, DISPLAY_CALENDAR_AND_REMEMBER_SELECTED_DAY, UPDATE_NEXT_DISPLAY_AND_SELECTED_DATE} from "./actionTypes";
 
  export function handlerNextMonth(){
     return{type:NEXT_MONTH}
@@ -134,5 +135,29 @@ export function  recordErrorMessage(newError:string){
 export function deleteErrorMessage(){
     return{
         type:DELETE_ERROR_MESSAGE
+    }
+}
+
+export function goToNextDay(){
+    return{
+        type:GO_TO_NEXT_DAY
+    }
+}
+export function goToPrevDay(){
+    return{
+        type:GO_TO_PREV_DAY
+    }
+}
+export function showСalendarЕemporarily(date:Y_M_D, nextDisplay:IDisplay){
+    return{
+        type:DISPLAY_CALENDAR_AND_REMEMBER_SELECTED_DAY,
+        newDate: date,
+        newDisplay:nextDisplay
+    }
+}
+export function updateNextDisplayAndSelectedDate(date:Y_M_D){
+    return{
+        type:UPDATE_NEXT_DISPLAY_AND_SELECTED_DATE,
+        newDate:date
     }
 }

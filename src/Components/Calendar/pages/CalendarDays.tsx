@@ -13,6 +13,7 @@ export const CalendarDays=()=>{
 
     function clsForDay (el:IDay):string{
         const arr =[
+            'day',
             dayIsSelected(state, el)? 'isActive':'',
             el.isNextMonthDay|| el.isPrevMothDay? 'colorGray': ''
         ]
@@ -23,16 +24,19 @@ export const CalendarDays=()=>{
         dispatch(handlerAssignActiveDate(year, month, day));
     }
     function drawDays(days:IDay[]):JSX.Element[]{
-        console.log(state)
         return days.map((el, i)=> 
-        (<div 
-            className={clsForDay(el)}
-            key={i}
-            onClick={()=>{AssignSelectedDate(el.year, el.month, el.day)}}
-            >
-            {el.day}
-            
-        </div>))
+        (
+            <div className="day" key={i}>
+                <div 
+                    className={clsForDay(el)}
+                    key={i}
+                    onClick={()=>{AssignSelectedDate(el.date.Y, el.date.M, el.date.D)}}
+                    >
+                    {el.date.D}
+                </div>
+                <span className={el.tasks && el.tasks.length>0? 'pointEvent': 'noPointEvent' }></span>
+            </div>
+        ))
     }
    
     return(

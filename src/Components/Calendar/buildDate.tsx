@@ -1,13 +1,11 @@
 import { useSelector } from "react-redux";
 import { IDefaultState } from "../../Redux/redusers/calendarResucer";
-import { IEventState } from "../../Redux/redusers/eventReducer";
+import { IEvent, IEventState } from "../../Redux/redusers/eventReducer";
 
 export interface IDay {
-    day: number
-    month:number
-    year:number
+    date:Y_M_D
     isActive:boolean
-    tasks?:[]
+    tasks?:IEvent[] | []
     isPrevMothDay?:boolean,
     isNextMonthDay?:boolean
 }
@@ -39,9 +37,11 @@ function getLostDaysOfPrevMonth(year:number,month:number,dateofWeek:number):IDay
         for(let i =0;i<b; i++){
             const day:number = i===0? daysOfprevMonth: daysOfprevMonth -i;
             const date:IDay={
-                day:day,
-                month: prevMonthOfThisYear(month) ? month -1 : 11,
-                year: prevMonthOfThisYear(month) ? year: year-1, 
+                date:{
+                    Y:prevMonthOfThisYear(month) ? year: year-1,
+                    M:prevMonthOfThisYear(month) ? month -1 : 11,
+                    D:day
+                },
                 isActive:false,
                 isPrevMothDay:true
             }
@@ -54,9 +54,11 @@ function getStartDaysOfNextMonth(year:number,month:number,dateofWeek:number):IDa
     const result= [];
         for(let i=1; i< 8 -dateofWeek; i++){
             const date:IDay={
-                day: i,
-                month: nextMonthOfThisYear(month)? month +1 : 0,
-                year: nextMonthOfThisYear(month)? year: year+1, 
+                date:{
+                    Y:nextMonthOfThisYear(month)? year: year+1, 
+                    M:nextMonthOfThisYear(month)? month +1 : 0,
+                    D:i
+                },
                 isActive:false,
                 isNextMonthDay:true
             }
@@ -77,9 +79,11 @@ function getArrayOfDays(state:IDefaultState):IDay[] {
 
     for(let d =1; d<=daysInMonth; d++){ 
         const date:IDay={
-            day:d,
-            month,
-            year,
+            date:{
+                Y:year,
+                M:month,
+                D:d
+            },
             isActive:false
         }
         result.push(date)
@@ -124,12 +128,27 @@ export  const getdaysInMonth=(year:number, month:number): number=>
         return acc
     },0)
 export function dayIsSelected(state:IDefaultState, objOfDay:IDay):boolean{
-    return state.selectedDay.Y===objOfDay.year && state.selectedDay.M === objOfDay.month && state.selectedDay.D===objOfDay.day
+    return state.selectedDay.Y===objOfDay.date.Y && state.selectedDay.M === objOfDay.date.M && state.selectedDay.D===objOfDay.date.D
+}
+function getEventsForDay(events:IEvent[], el:IDay):IEvent[]{
+    return events.filter((event:IEvent)=> JSON.stringify(event.date)=== JSON.stringify(el.date))
+}
+function getDaysWithEvents(gState:IGlobalState, days:IDay[]):IDay[]{
+    const eventsString = JSON.stringify( gState.events.events)
+    const events:IEvent[] = JSON.parse(eventsString)
+
+    return days.map((el:IDay, i):IDay=>{
+        const day:IDay={
+            ...el,
+            tasks: getEventsForDay(events, el)
+        }
+        return day
+    })
+    
 }
 export const BuildDays =()=>{
-    const state:IDefaultState =  useSelector((state:IGlobalState)=> state.calendar)
-    const days: IDay[] = getArrayOfDays(state);
-
-    console.log(days)
-    return days
+    const gState:IGlobalState =  useSelector((state:IGlobalState)=> state);
+    const days: IDay[] = getArrayOfDays(gState.calendar);
+    
+    return getDaysWithEvents(gState, days)
 }

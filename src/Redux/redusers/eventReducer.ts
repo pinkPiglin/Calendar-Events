@@ -1,14 +1,15 @@
-import { CACHE_EDITABLE_EVENT_TEXT, DEFINE_EDITABLE_EVENT, DELETE_ERROR_MESSAGE, DELETE_EVENT, DISPLAY_CREATE_EVENT, PUSH_NEW_EVENT, RECORD_ERROR, REMEMBER_PRIMARY_TEXT, RESET_SELECTED_EVENT, SAVE_CHANGED_EVENT, SAVE_TIME_EVENT, SAVE_VALUE_EVENT } from "../Actions/actionTypes";
+import { CACHE_EDITABLE_EVENT_TEXT, DEFINE_EDITABLE_EVENT, DELETE_ERROR_MESSAGE, DELETE_EVENT, DISPLAY_CALENDAR_AND_REMEMBER_SELECTED_DAY, DISPLAY_CREATE_EVENT, PUSH_NEW_EVENT, RECORD_ERROR, REMEMBER_PRIMARY_TEXT, RESET_SELECTED_EVENT, SAVE_CHANGED_EVENT, SAVE_TIME_EVENT, SAVE_VALUE_EVENT, UPDATE_NEXT_DISPLAY_AND_SELECTED_DATE } from "../Actions/actionTypes";
 import {  Y_M_D } from "../../Components/Calendar/buildDate";
 
-
+export interface IDisplay{
+    calendar:boolean
+    showEvents:boolean
+    createEvent:boolean
+}
 export interface IEventState{
-    display:{
-        calendar:boolean
-        showEvents:boolean
-        createEvent:boolean
-    }
-    selectedDay:Y_M_D
+    display:IDisplay
+    nextDisplay:IDisplay | undefined
+    selectedDate?:Y_M_D
     events:IEvent[]
     showEvents:{
         edit:{
@@ -36,11 +37,7 @@ const initialState:IEventState={
         showEvents:false,
         createEvent:true
     },
-    selectedDay:{
-        Y:new Date().getFullYear(),
-        M:new Date().getMonth(),
-        D:new Date().getDate()
-    },
+    nextDisplay:undefined,
     events:[],
     showEvents:{
         edit:{
@@ -86,6 +83,10 @@ export const eventReducer=(state=initialState, actions:any):IEventState=>{
             return{...state, createEvent:{...state.createEvent, userError:{name: actions.newError}}}
         case DELETE_ERROR_MESSAGE:
             return{...state,createEvent:{...state.createEvent, userError:{name:''}} }
+        case DISPLAY_CALENDAR_AND_REMEMBER_SELECTED_DAY:
+            return {...state, display:{calendar:true,showEvents:false, createEvent:false }, selectedDate:actions.newDate, nextDisplay:actions.newDisplay}
+        case UPDATE_NEXT_DISPLAY_AND_SELECTED_DATE:
+            return{...state, nextDisplay:undefined, selectedDate:actions.newDate}
         default:
             return state
     }

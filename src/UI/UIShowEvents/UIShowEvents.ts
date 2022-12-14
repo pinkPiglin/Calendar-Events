@@ -1,6 +1,7 @@
-import { defineEditableEvent, DeleteEvent, DisplayCreateEvent, saveChangedEvent} from "../../Redux/Actions/actionCreater";
+import { defineEditableEvent, DeleteEvent, DisplayCreateEvent, goToNextDay, goToPrevDay, saveChangedEvent} from "../../Redux/Actions/actionCreater";
 import { IEvent, IEventState } from "../../Redux/redusers/eventReducer";
 import { Dispatch } from "redux";
+import { IGlobalState } from "../../Components/Calendar/buildDate";
 
 
 export function handlerdeleteEvent(id:number, events:IEvent[], dispatch: Dispatch):void{
@@ -35,4 +36,14 @@ export function handlerSaveChangedEvent(state:IEventState, dispatch: Dispatch, i
         return el
     })
     dispatch(saveChangedEvent(arr))
+}
+export function handlerNextDay(state:IGlobalState, dispatch: Dispatch):void{
+    if(state.calendar.daysInMonth > state.calendar.selectedDay.D){
+        dispatch(goToNextDay())
+    }
+}
+export function handlerPrevDay(state:IGlobalState, dispatch: Dispatch):void{
+    if(state.calendar.selectedDay.D >1){
+        dispatch(goToPrevDay())
+    }
 }

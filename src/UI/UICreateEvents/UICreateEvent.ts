@@ -10,7 +10,7 @@ export function handlerSaveEvent (gState:IGlobalState, events:IEvent[], dispatch
     }
     const event:IEvent={
         text:gState.events.createEvent.text,
-        date: gState.events.selectedDay,
+        date: gState.calendar.selectedDay,
         time:gState.events.createEvent.time
     }
     if(events.length===0){// если  массив событий пустой - добавляю событие
@@ -32,7 +32,7 @@ export function handlerSaveEvent (gState:IGlobalState, events:IEvent[], dispatch
     else{
         dispatch(recordErrorMessage('По этому времени уже есть событие. Выберите другое время.'))
     }
-    
-
 }
+
+
 
