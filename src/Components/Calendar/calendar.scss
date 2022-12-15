@@ -1,14 +1,15 @@
 $widthCalendar:300; 
-$heightCalendar:289;
+$heightCalendar:320;
 
 
 .calendarDays{
     width: $widthCalendar+px;
+    max-height: $heightCalendar+px;
     margin: 0 auto;
     box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
     border-radius: 16px;
     padding: 24px;
-    height: $heightCalendar+px;
+    
     
     
     >.weekDays{
@@ -27,10 +28,7 @@ $heightCalendar:289;
  
     }
 }
-.isActive{
-    background-color: blue;
-    color: white;
-}
+
 .year-month{
     cursor:pointer;
     font-weight: 600;
@@ -130,4 +128,7 @@ $heightCalendar:289;
         }
     }
 }
-
+.isActive{
+    background-color: blue;
+    color: white;
+}

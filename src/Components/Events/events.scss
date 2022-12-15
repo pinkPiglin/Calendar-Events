@@ -1,8 +1,8 @@
 $widthEvents:347;
-$heightEvents: 337;
+$heightEvents: 368;
 .Events{
     width: $widthEvents+px;
-    height: $heightEvents+px;
+    max-height: $heightEvents+px;
     margin: 50px auto;
     box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
     border-radius: 16px;
@@ -48,10 +48,11 @@ $heightEvents: 337;
   
 }
 .listEvents{
-    height: 300px; 
+    padding-bottom: 10px;
+    box-sizing: border-box;
 }
 .event{
-    min-height: 25px;
+    min-height: 30px;
     outline:1px solid rgba(0, 0, 0, 0.304);
     border-radius: 8px;
     width:97%;
@@ -174,10 +175,8 @@ $heightEvents: 337;
             border: none;
             outline: none;
             border: 2px solid rgb(35, 35, 242);
-            
         }
     }
- 
 }
 
 

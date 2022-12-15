@@ -50,9 +50,24 @@ function getLostDaysOfPrevMonth(year:number,month:number,dateofWeek:number):IDay
     return result
 }
 
-function getStartDaysOfNextMonth(year:number,month:number,dateofWeek:number):IDay[]{
+function getStartDaysOfNextMonth(year:number,month:number,dateofWeek:number, allDays:IDay[]):IDay[]{
     const result= [];
-        for(let i=1; i< 8 -dateofWeek; i++){
+        // for(let i=1; i< 8 -dateofWeek; i++){ заполяняю до ближайшего воскресенья
+        //     const date:IDay={
+        //         date:{
+        //             Y:nextMonthOfThisYear(month)? year: year+1, 
+        //             M:nextMonthOfThisYear(month)? month +1 : 0,
+        //             D:i
+        //         },
+        //         isActive:false,
+        //         isNextMonthDay:true
+        //     }
+        //     result.push(date)
+        // } 
+        // return result
+        let b = 42 -allDays.length
+        let i=1;
+        for(let a=0; a<b; a++, i++){ // заполняю чтоб всего в календаре было 42 дня
             const date:IDay={
                 date:{
                     Y:nextMonthOfThisYear(month)? year: year+1, 
@@ -63,6 +78,7 @@ function getStartDaysOfNextMonth(year:number,month:number,dateofWeek:number):IDa
                 isNextMonthDay:true
             }
             result.push(date)
+            
         } 
         return result
 }
@@ -89,8 +105,12 @@ function getArrayOfDays(state:IDefaultState):IDay[] {
         result.push(date)
     }
 
-    if(dateofWeek(daysInMonth) !==0){ // Последний день месяца != Воскресенье?
-       const startDaysOfNextMonth:IDay[]= getStartDaysOfNextMonth(year, month, dateofWeek(daysInMonth));
+    // if(dateofWeek(daysInMonth) !==0){ // Последний день месяца != Воскресенье?
+    //    const startDaysOfNextMonth:IDay[]= getStartDaysOfNextMonth(year, month, dateofWeek(daysInMonth), result);
+    //    startDaysOfNextMonth.forEach(el=> result.push(el))
+    // }
+    if(result.length!== 42){ // колличество созданных дней !== 42? 
+       const startDaysOfNextMonth:IDay[]= getStartDaysOfNextMonth(year, month, dateofWeek(daysInMonth), result);
        startDaysOfNextMonth.forEach(el=> result.push(el))
     }
 

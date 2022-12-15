@@ -1,7 +1,7 @@
-import { defineEditableEvent, DeleteEvent, DisplayCreateEvent, goToNextDay, goToPrevDay, saveChangedEvent} from "../../Redux/Actions/actionCreater";
+import { defineEditableEvent, DeleteEvent, DisplayCreateEvent, goToNextDay, goToPrevDay, saveChangedEvent, TESTaddAnyEvents} from "../../Redux/Actions/actionCreater";
 import { IEvent, IEventState } from "../../Redux/redusers/eventReducer";
 import { Dispatch } from "redux";
-import { IGlobalState } from "../../Components/Calendar/buildDate";
+import { IGlobalState, Y_M_D } from "../../Components/Calendar/buildDate";
 
 
 export function handlerdeleteEvent(id:number, events:IEvent[], dispatch: Dispatch):void{
@@ -46,4 +46,16 @@ export function handlerPrevDay(state:IGlobalState, dispatch: Dispatch):void{
     if(state.calendar.selectedDay.D >1){
         dispatch(goToPrevDay())
     }
+}
+export function handlerCreateAnyEvents(dispatch:Dispatch, date:Y_M_D){
+    const result:IEvent[]=[];
+    for(let i=10; i<=30; i++){
+        const ev:IEvent={
+            date,
+            text:`Тестовое событие ${i}`,
+            time:`00:${i}`
+        }
+        result.push(ev)
+    }
+    dispatch(TESTaddAnyEvents(result))
 }

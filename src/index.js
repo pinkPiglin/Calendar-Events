@@ -7,14 +7,15 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReduser from './Redux/redusers/rootReduser';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import  'overlayscrollbars/overlayscrollbars.css' ;
 
 
 const store = createStore(rootReduser, composeWithDevTools())
-export type RootState = ReturnType<typeof rootReduser>;
-export type AppDispatch = typeof store.dispatch;
+// export type RootState = ReturnType<typeof rootReduser>;
+// export type AppDispatch = typeof store.dispatch;
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root')
 );
 root.render(
   <React.StrictMode>

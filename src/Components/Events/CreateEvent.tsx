@@ -10,16 +10,16 @@ function drowError(error:string):JSX.Element{
 export const CreateEvent =()=>{
     const gState = useSelector((state:IGlobalState)=>state);
     const dispatch = useDispatch();
-    const events = gState.events.events
+    const events = gState.events.events;
+
     useEffect(()=>{
-        if( // если сейчас отображается Не календарь &&  есть разница в выбранном дне между календарем и событиями
-            (gState.events.display.calendar === false) &&
-            ( JSON.stringify(gState.events.selectedDate)!== JSON.stringify(gState.calendar.selectedDay) )
-        )
-        {
-            dispatch(updateNextDisplayAndSelectedDate(gState.calendar.selectedDay)) 
-        }
+         // если есть разница в выбранном дне между календарем и событиями
+        if(JSON.stringify(gState.events.selectedDate)!== JSON.stringify(gState.calendar.selectedDay)){
+            console.log('UPDATE CreateEvents')
+            dispatch(updateNextDisplayAndSelectedDate(gState.calendar.selectedDay))
+        }    
     })
+
 
     return (
         <div className="CreateEvent">
