@@ -3,9 +3,10 @@ import { IpropsBtn } from "./BtnDisplayCreateEvent"
 
 export const BtnDisplayCalendar=({f}:IpropsBtn)=>{
     return(
-        <button 
-        className="btnDispCalendar"
+        <button
+        
+        className="btnDispCalendar button"
         onClick={()=>f(displayCalendar())}
-        >Показать календарь</button>
+        ></button>
     )
 }

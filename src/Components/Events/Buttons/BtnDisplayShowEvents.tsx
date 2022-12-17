@@ -4,8 +4,8 @@ import { IpropsBtn } from "./BtnDisplayCreateEvent"
 export const BtnDisplayShowEvents = ({f}:IpropsBtn)=>{
     return(
         <button 
-        className="btnDispShowEvents"
+        className="button btnDispShowEvents"
         onClick={()=>f(displayShowEvents())}
-        >Показать события</button>
+        ></button>
     )
 }

@@ -1,0 +1,80 @@
+.loginForm{
+    width: 600px;
+    height: 350px;
+    border:2px solid black;
+    border-radius: 15px;
+    margin:  200px auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    >div {
+        width: 272px;
+        height: 50px;
+        border-bottom: 1px solid black;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        >input{
+            display: flex;
+            align-items: flex-end;
+            width: 272px;
+
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-size: 26px 31px;
+            font-size: 24px;
+            outline: none;
+            border: none;
+            text-align: center ;
+            height: 48px;
+            
+            &:focus{
+                align-items: center;
+            }
+        }
+    }
+    >button{
+        margin-top: 40px;
+        border: none;
+        width: 150px;
+        height: 40px;
+        border-radius: 26px;
+        font-size: 24px;
+        font-weight: 500;
+        background-image: url('./img/Rectangle\ 5.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        &:hover{
+            box-shadow: 0 0 4px;
+        }
+        &:active{
+            box-shadow: inset 0 0 4px;
+        }
+    }
+
+    .login{
+        height:60px;
+        display: flex;
+        flex-direction: column;
+        >.error{
+            width: 100%;
+            display: block;
+            color: red;
+            text-align: center;
+        }
+        >input{
+            background-image: url('./img/Profile.png');
+        }
+    }
+    .password{
+        margin-top: 20px;
+        >input{
+            background-image: url('./img/Lock.png');
+        }
+    }
+  
+}

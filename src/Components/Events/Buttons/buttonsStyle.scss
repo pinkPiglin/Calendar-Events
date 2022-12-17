@@ -1,0 +1,52 @@
+.button{
+    width: 25px;
+    height: 25px;
+    border: none;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    transition: all 0.2s;
+    margin: 5px 0 5px 10px;
+}
+
+
+.addEvent{
+    background: url('../../../icons/icons8-add-new-100.png');
+    background-size: contain;
+    &:hover{
+        background: url('../../../icons/icons8-add-new-100\ \(1\).png');
+        background-size: contain;
+    }
+}
+
+
+.btnDispCalendar{
+    background: url('../../../icons/icons8-calendar-64.png');
+    background-size: contain;
+    &:hover{
+        background: url('../../../icons/icons8-calendar-96\ \(1\).png');
+        background-size: contain;
+    }
+}
+
+.btnDispShowEvents{
+    background: url('../../../icons/icons8-event-67.png');
+    background-size: contain;
+    &:hover{
+        background: url('../../../icons/icons8-event-96.png');
+        background-size: contain;
+    }
+}
+
+.testBtn{
+    width: 23px;
+    height: 23px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    outline: 1px solid black;
+    font-size: 10px;
+
+    &:hover{
+        background-color: black;
+        color: white;
+    }
+}

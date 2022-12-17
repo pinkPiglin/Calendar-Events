@@ -3,7 +3,7 @@ $heightEvents: 368;
 .Events{
     width: $widthEvents+px;
     max-height: $heightEvents+px;
-    margin: 50px auto;
+   
     box-shadow: 8px 3px 22px 10px rgba(150, 150, 150, 0.11);
     border-radius: 16px;
     // outline: 1px solid black;
@@ -41,6 +41,7 @@ $heightEvents: 368;
         }
     }
     >h4{
+        cursor: pointer;
         color: white;
         font-weight: 500;
         font-size: 16px;
@@ -123,29 +124,7 @@ $heightEvents: 368;
     border-right: 1px solid rgba(0, 0, 0, 0.304);
 }
 
-.addEvent{
-    width: 30px;
-    height: 30px;
-    position: relative;
-    top: 0px;
-    left: 145px;
-    border: none;
-    cursor: pointer;
 
-    background: url('../../icons/plus.png');
-    background-repeat: no-repeat;
-    background-size: 25px 25px;
-    background-position: center;
-
-    transition: all 0.2s;
-   
-    &:hover{
-        background: url('../../icons/add.png');
-        background-repeat: no-repeat;
-        background-size: 25px 25px;
-        background-position: center;
-    }
-}
 .CreateEvent{
     padding-top:20px;
     box-shadow: 0 0 10px rgba(0, 0, 255, 0.796);
@@ -191,13 +170,13 @@ $heightEvents: 368;
     .dateEvent{
         padding-left: 30px;
         background: url('../../icons/icons8-calendar-64.png');
-        background-size: 20px 20px;
+        background-size: contain;
         background-repeat: no-repeat;
         cursor: pointer;
     
         &:hover{
-            background: url('../../icons/icons8-calendar-64\ \(1\).png');
-            background-size: 20px 20px;
+            background: url('../../icons/icons8-calendar-96\ \(1\).png');
+            background-size: contain;
             background-repeat: no-repeat;
             outline: none;
         }
@@ -294,5 +273,19 @@ $heightEvents: 368;
         background-size: 20px 20px;
         
     }
+}
+.buttonsEvents{
+    margin: auto auto 0;
+    width: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.wraperEvents{
+    margin:auto;
+    width: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
