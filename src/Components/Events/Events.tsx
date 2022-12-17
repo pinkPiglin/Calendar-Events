@@ -10,14 +10,15 @@ import { BtnDisplayCreateEvent } from "./Buttons/BtnDisplayCreateEvent";
 import { BtnTESTaddEvents } from "./Buttons/BtnTESTaddEvents";
 import { BtnDisplayCalendar } from "./Buttons/BtnDisplayCalendar";
 import { BtnDisplayShowEvents } from "./Buttons/BtnDisplayShowEvents";
-import React, { useRef } from "react";
-
+import { useEffect, useRef } from "react";
 
 
 export const Events =()=>{
     const state = useSelector((state:IGlobalState)=>state.events);
     const gState = useSelector((state:IGlobalState)=>state);
     const dispatch = useDispatch();
+    const wraperRef = useRef(null)
+    console.log('window inner height: ', window.innerHeight);
     // если selectedDay отсутствует - определяем его
     !gState.events.selectedDate && dispatch(updateSelectedDate(gState.calendar.selectedDay)) 
 
@@ -29,9 +30,17 @@ export const Events =()=>{
     if(isDateDifference) dispatch(updateSelectedDate(gState.calendar.selectedDay))
     
     const display:IDisplay = state.display;
+    useEffect(()=>{
+        // const styles = getComputedStyle(wraperRef.current)
     
+        console.log('style',wraperRef) 
+    })
+
+    const style = {
+        marginTop: window.innerHeight>340? window.innerHeight/4+'px' : 'auto'
+    }
     return (
-        <div className="wraperEvents" >
+        <div className="wraperEvents" ref={wraperRef} style={style}>
             <div className="Events">
                 {display.calendar && <Calendar/>}
                 {display.showEvents && <ShowEvents/>}

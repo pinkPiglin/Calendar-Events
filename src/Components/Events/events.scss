@@ -276,10 +276,14 @@ $heightEvents: 368;
 }
 .buttonsEvents{
     margin: auto auto 0;
-    width: 30px;
     height: 100%;
     display: flex;
     flex-direction: column-reverse;
+    justify-content: center;
+    padding-left: 10px;
+    >div{
+        margin: auto 0 0 auto;
+    }
 }
 .wraperEvents{
     margin:auto;

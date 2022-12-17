@@ -2,14 +2,17 @@
     width: 25px;
     height: 25px;
     border: none;
+    box-sizing: border-box;
     cursor: pointer;
     background-repeat: no-repeat;
     transition: all 0.2s;
-    margin: 5px 0 5px 10px;
+    margin: 5px 0 ;
+
 }
 
 
 .addEvent{
+    
     background: url('../../../icons/icons8-add-new-100.png');
     background-size: contain;
     &:hover{
@@ -30,19 +33,21 @@
 
 .btnDispShowEvents{
     background: url('../../../icons/icons8-event-67.png');
-    background-size: contain;
+    background-size: cover;
     &:hover{
         background: url('../../../icons/icons8-event-96.png');
-        background-size: contain;
+        background-size: cover;
     }
 }
 
 .testBtn{
-    width: 23px;
-    height: 23px;
+    width: 22px;
+    height: 24px;
+    text-align: center;
+    margin-left: 1px;
     box-sizing: border-box;
     border-radius: 3px;
-    outline: 1px solid black;
+    border: 1px solid black;
     font-size: 10px;
 
     &:hover{

@@ -1,19 +1,19 @@
 
 import './App.css';
 import {Route, Routes} from 'react-router-dom'
-import { Layout } from './Layout';
-import CreateTask from './Pages/CreateTask';
-import AllTasks from './Pages/AllTasks/allTasks';
-
+import { Events } from './Components/Events/Events';
+import RequireAuth from './hoc/RequireAuth';
+import LoginPage from './Pages/loginPage/loginPage';
 function App() {
   return (
     <div className='App'>
     <Routes>
-        <Route path='/' element={<Layout/>}>
-          <Route path='createTask' element={<CreateTask/>}/>
-          <Route path='allTasks' element={<AllTasks/>}/>
-        </Route>
-        
+      <Route path='/' element={
+        <RequireAuth>
+          <Events/>
+        </RequireAuth>
+      } />
+      <Route path='login' element={<LoginPage/>}/>
     </Routes>
     </div>
   )

@@ -13,6 +13,6 @@ export const BtnTESTaddEvents =({f, state}:Btn)=>{
     return(
         <button
         className="button testBtn "
-        onClick={()=>handlerCreateAnyEvents(f, state.events.selectedDate!)} > + 20</button>
+        onClick={()=>handlerCreateAnyEvents(f, state.events.selectedDate!)} > + 10</button>
     )
 }

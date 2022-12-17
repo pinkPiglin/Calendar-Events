@@ -49,7 +49,7 @@ export function handlerPrevDay(state:IGlobalState, dispatch: Dispatch):void{
 }
 export function handlerCreateAnyEvents(dispatch:Dispatch, date:Y_M_D){
     const result:IEvent[]=[];
-    for(let i=10; i<=30; i++){
+    for(let i=10; i<=20; i++){
         const ev:IEvent={
             date,
             text:`Тестовое событие ${i}`,
