@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { assignValidity, authUser, exitUser} from "../Redux/Actions/actionCreaterAuth";
 import {  useNavigate } from "react-router-dom";
+import { fetchEvents } from "../Redux/Actions/actionCreater";
 
 
 export const AuthProvider =()=>{
@@ -29,6 +30,8 @@ export const AuthProvider =()=>{
             let user = users[i];
             if(user.login===loginValue && user.password=== passwordValue){
                 dispatch(authUser(user))
+                const userEvents = localStorage.getItem(user.login); 
+                userEvents && dispatch(fetchEvents(JSON.parse(userEvents)))
                 i=1000;
                 navigate(to, {replace:replace})
             }

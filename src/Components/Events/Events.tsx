@@ -18,7 +18,8 @@ export const Events =()=>{
     const gState = useSelector((state:IGlobalState)=>state);
     const dispatch = useDispatch();
     const wraperRef = useRef(null)
-    console.log('window inner height: ', window.innerHeight);
+
+    
     // если selectedDay отсутствует - определяем его
     !gState.events.selectedDate && dispatch(updateSelectedDate(gState.calendar.selectedDay)) 
 
@@ -30,12 +31,7 @@ export const Events =()=>{
     if(isDateDifference) dispatch(updateSelectedDate(gState.calendar.selectedDay))
     
     const display:IDisplay = state.display;
-    useEffect(()=>{
-        // const styles = getComputedStyle(wraperRef.current)
     
-        console.log('style',wraperRef) 
-    })
-
     const style = {
         marginTop: window.innerHeight>340? window.innerHeight/4+'px' : 'auto'
     }

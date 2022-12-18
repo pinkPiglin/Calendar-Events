@@ -8,9 +8,8 @@ type props={
 }
 const RequireAuth=({children}:props):any=> {
     const gState:IGlobalState = useSelector((state:IGlobalState)=>state);
-
     const location =  useLocation();
-    console.log(location);
+    // console.log(location);
     if(!gState.auth.authorized){
        return  <Navigate to='/login' state={{from:location}}/> 
     }

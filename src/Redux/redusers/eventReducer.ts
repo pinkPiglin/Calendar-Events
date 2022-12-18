@@ -1,4 +1,4 @@
-import { CACHE_EDITABLE_EVENT_TEXT, DEFINE_EDITABLE_EVENT, DELETE_ERROR_MESSAGE, DELETE_EVENT, DISPLAY_CALENDAR, DISPLAY_CALENDAR_AND_REMEMBER_SELECTED_DAY, DISPLAY_CREATE_EVENT, DISPLAY_SHOW_EVENTS, PUSH_NEW_EVENT, RECORD_ERROR, REMEMBER_PRIMARY_TEXT, RESET_SELECTED_EVENT, SAVE_CHANGED_EVENT, SAVE_TIME_EVENT, SAVE_VALUE_EVENT, TEST_ADD_ANY_EVENTS, UPDATE_NEXT_DISPLAY_AND_SELECTED_DATE, UPDATE_SELECTED_DATE } from "../Actions/actionTypes";
+import { CACHE_EDITABLE_EVENT_TEXT, DEFINE_EDITABLE_EVENT, DELETE_ERROR_MESSAGE, DELETE_EVENT, DISPLAY_CALENDAR, DISPLAY_CALENDAR_AND_REMEMBER_SELECTED_DAY, DISPLAY_CREATE_EVENT, DISPLAY_SHOW_EVENTS, FETCH_EVENTS, PUSH_NEW_EVENT, RECORD_ERROR, REMEMBER_PRIMARY_TEXT, RESET_SELECTED_EVENT, SAVE_CHANGED_EVENT, SAVE_TIME_EVENT, SAVE_VALUE_EVENT, TEST_ADD_ANY_EVENTS, UPDATE_NEXT_DISPLAY_AND_SELECTED_DATE, UPDATE_SELECTED_DATE } from "../Actions/actionTypes";
 import {  Y_M_D } from "../../Components/Calendar/buildDate";
 
 export interface IDisplay{
@@ -96,6 +96,8 @@ export const eventReducer=(state=initialState, actions:any):IEventState=>{
             return{...state, display:{calendar:true, createEvent:false, showEvents:false}}
         case DISPLAY_SHOW_EVENTS:
             return{...state, display:{calendar:false, createEvent:false, showEvents:true}}
+        case FETCH_EVENTS:
+            return{...state, events:actions.newEvents}
         default:
             return state
     }
