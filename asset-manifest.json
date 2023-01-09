@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/Calendar-Events/static/css/main.2072e934.css",
-    "main.js": "/Calendar-Events/static/js/main.d47f283d.js",
+    "main.css": "/Calendar-Events/static/css/main.05596806.css",
+    "main.js": "/Calendar-Events/static/js/main.e4f433f6.js",
     "static/media/Rectangle 5.png": "/Calendar-Events/static/media/Rectangle 5.99f94b103e804648fb4a.png",
     "index.html": "/Calendar-Events/index.html",
-    "main.2072e934.css.map": "/Calendar-Events/static/css/main.2072e934.css.map",
-    "main.d47f283d.js.map": "/Calendar-Events/static/js/main.d47f283d.js.map"
+    "main.05596806.css.map": "/Calendar-Events/static/css/main.05596806.css.map",
+    "main.e4f433f6.js.map": "/Calendar-Events/static/js/main.e4f433f6.js.map"
   },
   "entrypoints": [
-    "static/css/main.2072e934.css",
-    "static/js/main.d47f283d.js"
+    "static/css/main.05596806.css",
+    "static/js/main.e4f433f6.js"
   ]
 }
