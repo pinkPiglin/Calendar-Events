@@ -5,7 +5,7 @@ import { AuthProvider } from '../../hoc/AuthProvider';
 import { useDispatch, useSelector } from 'react-redux';
 import { IGlobalState } from '../../Components/Calendar/buildDate';
 import { AuthState } from '../../Redux/redusers/AuthReducer';
-import { onChangeInputLogin, onChangePasswordInput, setIsErrorMessage } from '../../Redux/Actions/actionCreaterAuth';
+import { onChangeInputLogin, onChangePasswordInput, setIsErrorMessage } from '../../Redux/Actions/AuthAtionCreater';
 
 const LoginPage=()=>{
     const state:AuthState = useSelector((state:IGlobalState)=>state.auth);
@@ -15,11 +15,11 @@ const LoginPage=()=>{
 
     const fromPage = location.state?.from?.pathname || '/'
 
-    function logIn(event:React.FormEvent){
+    async function logIn(event:React.FormEvent){
         dispatch(setIsErrorMessage(true))
         event.preventDefault();
         const form = event.target;
-        context.singIn(state.loginPage.inputLogin, state.loginPage.inputPassword, {to:fromPage, replace:true});
+        await context.singIn(state.loginPage.inputLogin, state.loginPage.inputPassword,fromPage,true);
     }
 
 

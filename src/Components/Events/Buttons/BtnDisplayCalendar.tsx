@@ -1,4 +1,4 @@
-import { displayCalendar, displayShowEvents } from "../../../Redux/Actions/actionCreater"
+import { displayCalendar } from "../../../Redux/Actions/EventsActionCreater"
 import { IpropsBtn } from "./BtnDisplayCreateEvent"
 
 export const BtnDisplayCalendar=({f}:IpropsBtn)=>{

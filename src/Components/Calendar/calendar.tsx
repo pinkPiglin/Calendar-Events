@@ -29,9 +29,9 @@ export default function Calendar(){
     const state:IDefaultState = useSelector((state: {[key:string]:any})=> state.calendar)
     return(
         <>
-        {state.display.days? <CalendarDays/>:null}
-        {state.display.months? <ChooseMonth/> : null}
-        {state.display.years? <CalendarYears/> : null}
+            {state.display.days? <CalendarDays/>:null}
+            {state.display.months? <ChooseMonth/> : null}
+            {state.display.years? <CalendarYears/> : null}
         </>
     )
 }

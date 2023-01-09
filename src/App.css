@@ -1,4 +1,9 @@
 .App {
+  height: 100%;
   text-align: center;
+  /* background: url('../src/image/Style=Pale.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0; */
 }
 

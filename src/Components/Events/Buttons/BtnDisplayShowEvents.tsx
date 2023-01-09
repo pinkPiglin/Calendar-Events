@@ -1,4 +1,4 @@
-import { displayShowEvents } from "../../../Redux/Actions/actionCreater"
+import { displayShowEvents } from "../../../Redux/Actions/EventsActionCreater"
 import { IpropsBtn } from "./BtnDisplayCreateEvent"
 
 export const BtnDisplayShowEvents = ({f}:IpropsBtn)=>{

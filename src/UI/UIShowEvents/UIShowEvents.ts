@@ -1,14 +1,13 @@
-import { defineEditableEvent, DeleteEvent, DisplayCreateEvent, goToNextDay, goToPrevDay, saveChangedEvent, TESTaddAnyEvents} from "../../Redux/Actions/actionCreater";
+import { defineEditableEvent, DeleteEvent, DisplayCreateEvent, goToNextDay, goToPrevDay, saveChangedEvent, TESTaddAnyEvents} from "../../Redux/Actions/EventsActionCreater";
 import { IEvent, IEventState } from "../../Redux/redusers/eventReducer";
 import { Dispatch } from "redux";
 import { IGlobalState, Y_M_D } from "../../Components/Calendar/buildDate";
+import { DeleteOneEvent, GetAllEvents, PutEvent } from "../../Redux/Actions/AsyncActions";
 
 
-export function handlerdeleteEvent(id:number, events:IEvent[], dispatch: Dispatch):void{
-    const arrStr = JSON.stringify(events);
-    const arr:IEvent[] = JSON.parse(arrStr);
-    arr.splice(id, 1)
-    dispatch(DeleteEvent(arr))
+export async function handlerdeleteEvent(userId:string, id:string, dispatch:Dispatch){
+    await DeleteOneEvent(userId, id)(dispatch) 
+    await GetAllEvents(userId)(dispatch)
 }
 
 export function handlerDisplayCreateEvent(dispatch: Dispatch):void{
@@ -24,18 +23,17 @@ export function handlerEditEvent(id:string, state:IEventState, dispatch: Dispatc
     }
 }
 
-export function handlerSaveChangedEvent(state:IEventState, dispatch: Dispatch, id:number){
-    const arr = state.events.map((el, i)=>{
-        if(id===i){
-            return{
-                date:el.date,
-                text:state.showEvents.edit.text,
-                time:el.time
-            }
-        }
-        return el
-    })
-    dispatch(saveChangedEvent(arr))
+export async function handlerSaveChangedEvent(state:IGlobalState, dispatch: Dispatch, id:string){
+    const changeText = state.events.showEvents.edit.text
+    const userId = state.auth.user?.id!
+    const editId = state.events.showEvents.edit.id
+    if(!changeText.trim()){
+        await DeleteOneEvent(id)
+    }
+    else{
+        await PutEvent(userId, editId, changeText)(dispatch)
+    }
+    await GetAllEvents(userId)(dispatch)
 }
 export function handlerNextDay(state:IGlobalState, dispatch: Dispatch):void{
     if(state.calendar.daysInMonth > state.calendar.selectedDay.D){

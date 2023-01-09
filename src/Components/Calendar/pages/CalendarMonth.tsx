@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { handlerDisplayDays, handlerNextYear, handlerPrevYear, handlerDisplayYears} from "../../../Redux/Actions/actionCreater";
+import { handlerDisplayDays, handlerNextYear, handlerPrevYear, handlerDisplayYears} from "../../../Redux/Actions/CalendarActionCreater";
 import { IDefaultState } from "../../../Redux/redusers/calendarResucer";
 import { getNameMonth, IGlobalState } from "../buildDate";
 import '.././calendar.scss'
@@ -38,7 +38,6 @@ export const ChooseMonth=()=>{
     const state = useSelector((state:IGlobalState)=> state.calendar);
     const dispatch = useDispatch();
     const months:IMonth[]=createMonths(state);
-    console.log(months)
     function clsMonth(el:IMonth):string{
         const arr= [
             el.isNextYear? 'colorGray':'',

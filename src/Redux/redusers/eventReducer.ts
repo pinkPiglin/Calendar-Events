@@ -23,19 +23,20 @@ export interface IEventState{
         userError:{
             name:string
         }
-
     }
 }
 export interface IEvent{
+    _id?:string,
+    userId?:string,
     time:string,
     text:string,
     date:Y_M_D
 }
 const initialState:IEventState={
     display:{
-        calendar:false,
+        calendar:true,
         showEvents:false,
-        createEvent:true
+        createEvent:false
     },
     nextDisplay:undefined,
     events:[],
@@ -61,7 +62,7 @@ export const eventReducer=(state=initialState, actions:any):IEventState=>{
         case SAVE_TIME_EVENT:
             return{...state, createEvent:{...state.createEvent, time: actions.value}}
         case PUSH_NEW_EVENT:
-            return{...state, events:[...state.events, actions.event], createEvent:{...state.createEvent, text:'',userError:{name:''}}, display:{
+            return{...state, createEvent:{...state.createEvent, text:'',userError:{name:''}}, display:{
                 calendar:false,
                 showEvents:true,
                 createEvent:false
@@ -79,7 +80,7 @@ export const eventReducer=(state=initialState, actions:any):IEventState=>{
         case CACHE_EDITABLE_EVENT_TEXT:
             return{...state, showEvents:{edit:{...state.showEvents.edit, text:actions.newText}} }
         case SAVE_CHANGED_EVENT:
-            return{...state, events: actions.newEvents, showEvents:{edit:{id:'', text:''}}}
+            return{...state, showEvents:{edit:{id:'', text:''}}}
         case RECORD_ERROR:
             return{...state, createEvent:{...state.createEvent, userError:{name: actions.newError}}}
         case DELETE_ERROR_MESSAGE:

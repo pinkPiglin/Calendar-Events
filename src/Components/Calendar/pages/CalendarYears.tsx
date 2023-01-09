@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { handlerGoToMonth, handlerChangeYear } from "../../../Redux/Actions/actionCreater";
+import { handlerGoToMonth, handlerChangeYear } from "../../../Redux/Actions/CalendarActionCreater";
 import { Today } from "../Today";
 import { IGlobalState } from "../buildDate";
 
@@ -11,7 +11,6 @@ function getYears(year:number):number[]{
     for(let i=b; i<=b+15; i++){
         arr.push(i)
     }
-    console.log(arr)
     return arr
 }
 export const CalendarYears=()=>{

@@ -2,7 +2,7 @@
   "name": "demo-from-jedi",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://pinkPiglin.github.io/ToDo",
+  "homepage": "https://pinkPiglin.github.io/Calendar-Events",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -11,6 +11,8 @@
     "@types/node": "^16.18.4",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
+    "axios": "^1.2.2",
+    "gh-pages": "^4.0.0",
     "overlayscrollbars": "^2.0.1",
     "overlayscrollbars-react": "^0.5.0",
     "react": "^18.2.0",
@@ -20,6 +22,7 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2",
     "sass": "^1.56.1",
     "typescript": "^4.9.3",
     "web-vitals": "^2.1.4"

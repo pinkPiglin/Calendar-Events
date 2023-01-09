@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
-import {  OnchangeEventValue, OnChangeTimeEvent, deleteErrorMessage, showСalendarЕemporarily, updateNextDisplayAndSelectedDate } from "../../Redux/Actions/actionCreater";
+import {  OnchangeEventValue, OnChangeTimeEvent, deleteErrorMessage, showСalendarЕemporarily, updateNextDisplayAndSelectedDate } from "../../Redux/Actions/EventsActionCreater";
 import { getNameMonth, IGlobalState } from "../Calendar/buildDate";
-import { handlerSaveEvent } from "../../UI/UICreateEvents/UICreateEvent";
 import {useEffect} from 'react'
+import { GetAllEvents, PostOneEvent } from "../../Redux/Actions/AsyncActions";
+import { IEvent } from "../../Redux/redusers/eventReducer";
 
 function drowError(error:string):JSX.Element{
     return (<p>{error}</p>)
@@ -10,8 +11,12 @@ function drowError(error:string):JSX.Element{
 export const CreateEvent =()=>{
     const gState = useSelector((state:IGlobalState)=>state);
     const dispatch = useDispatch();
-    const events = gState.events.events;
-
+    const userId = gState.auth.user!.id
+      const event:IEvent={
+        text:gState.events.createEvent.text,
+        date: gState.calendar.selectedDay,
+        time:gState.events.createEvent.time
+    }
     useEffect(()=>{
          // если есть разница в выбранном дне между календарем и событиями
         if(JSON.stringify(gState.events.selectedDate)!== JSON.stringify(gState.calendar.selectedDay)){
@@ -57,7 +62,7 @@ export const CreateEvent =()=>{
             {gState.events.createEvent.userError.name ? drowError(gState.events.createEvent.userError.name) : null}
 
             </div>
-            <button onClick={()=>handlerSaveEvent(gState, events, dispatch)} className="saveEvent">Cохранить</button>
+            <button onClick={()=>PostOneEvent(userId, event,gState.events.createEvent.text.trim())(dispatch)} className="saveEvent">Cохранить</button>
         </div>
     )
 }

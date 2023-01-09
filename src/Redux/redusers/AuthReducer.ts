@@ -1,12 +1,18 @@
-import { ASSIGN_VALIDITY, ON_CHANGE_LOGIN_VALUE, ON_CHANGE_PASSWORD_VALUE, SET_IS_ERROR_MESSAGE, SING_IN } from "../Actions/actionsTypesAuth"
+import { ASSIGN_VALIDITY, ON_CHANGE_LOGIN_VALUE, ON_CHANGE_PASSWORD_VALUE, SET_IS_ERROR_MESSAGE, SING_IN } from "../Actions/actionTypes"
 
 
 export interface IUser{
+    id:string
     name:string,
-    login:string
-    password:string
 }
 
+// const defaultUser:IUser={
+//     id:'63b7e8b4a4311ce01f6c474f',
+//     login:"admin",
+//     password:'admin',
+//     name:'Administrator'
+
+// }
 export interface AuthState{
     authorized: boolean
     user?:IUser
@@ -26,7 +32,6 @@ const initialState:AuthState = {
         inputPassword: '',
         hideErrorMessge:true
     }
-
 }
 
 

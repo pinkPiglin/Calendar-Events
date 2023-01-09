@@ -4,7 +4,7 @@ import { IEvent} from "../../Redux/redusers/eventReducer";
 import { IGlobalState } from "../Calendar/buildDate";
 import { getDateFormat_W_D_M} from "../Calendar/calendar";
 import { handlerNextDay, handlerPrevDay} from "../../UI/UIShowEvents/UIShowEvents";
-import { showСalendarЕemporarily, updateNextDisplayAndSelectedDate} from "../../Redux/Actions/actionCreater";
+import { showСalendarЕemporarily} from "../../Redux/Actions/EventsActionCreater";
 import { drowEvents } from "./drowEvents";
 import { useScrollbar } from "../../hook/useScrollBar";
 
@@ -27,12 +27,7 @@ export const ShowEvents =()=>{
         if(id!==''){ // если пользователь редактирует textarea
             const textarea = document.getElementById(id)!;
             textarea.focus()
-        }
-        // если есть разница в выбранном дне между календарем и событиями
-        if(  JSON.stringify(gState.events.selectedDate)!== JSON.stringify(gState.calendar.selectedDay )){
-            console.log('UPDATE ShowEvents')
-            dispatch(updateNextDisplayAndSelectedDate(gState.calendar.selectedDay))
-        }    
+        } 
     })
 
     return (
